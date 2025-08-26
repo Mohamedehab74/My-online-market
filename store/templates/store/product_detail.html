@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ product.name }}</title>
+</head>
+<body>
+    <h1>{{ product.name }}</h1>
+    <p><strong>Price:</strong> ${{ product.price }}</p>
+    <p><strong>Category:</strong> {{ product.get_category_display }}</p>
+    <p><strong>Description:</strong> {{ product.description }}</p>
+    <p><strong>Available Until:</strong> {{ product.available_until }}</p>
+    <p><strong>Created At:</strong> {{ product.created_at }}</p>
+
+    {% if product.image %}
+        <img src="{{ product.image.url }}" width="250" alt="{{ product.name }}">
+    {% endif %}
+
+    <br><br>
+    <a href="{% url 'product_list' %}">Back to Products</a>
+</body>
+</html>

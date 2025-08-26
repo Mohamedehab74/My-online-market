@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Products</title>
+    <link rel="stylesheet" href="{% static 'store/style.css' %}">
+</head>
+<body>
+    <h1>Online Market</h1>
+    <div class="container">
+        <a href="{% url 'create_product' %}">➕ Create Product</a>
+        <hr>
+        <ul>
+            {% for product in products %}
+                <li>
+                    <a href="{% url 'product_detail' product.pk %}">
+                        <strong>{{ product.name }}</strong>
+                    </a> - ${{ product.price }}
+                    <br>
+                    Category: {{ product.get_category_display }}
+                    <br>
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}">
+                    {% endif %}
+                </li>
+            {% empty %}
+                <li>No products found.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
